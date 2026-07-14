@@ -17,5 +17,11 @@ public class Vehicle {
 		System.out.println("Vehicle color: " + color);
 		System.out.println("Vehicle brand: " + brand);
 	}
+	
+	@Override
+	public String toString()
+	{
+	  return super.toString() + " color: " + color + " brand: " + brand;
+	}
 
 }
