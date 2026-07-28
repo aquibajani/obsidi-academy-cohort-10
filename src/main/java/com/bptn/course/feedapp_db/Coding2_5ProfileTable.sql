@@ -27,17 +27,27 @@ VALUES(1, 'Jessie is the best!', 'Living the life of my dreams.', 'Toronto', 'Ca
 (4, 'Chef Diana', 'Cooking is my passion.', 'Vancouver', 'British Columbia', 'https://static.vecteezy.com/system/resources/thumbnails/033/161/651/small/ai-generated-cute-little-girl-holding-a-bouquet-of-flowers-in-mothers-day-international-womens-day-st-valentines-day-concept-copy-space-photo.jpg');
 
 -- Select all rows from the "Profile" table where the country is "Canada".
+SELECT * FROM "Profile" WHERE "country" LIKE 'Canada';
 
 -- Update the profile with userId = 2
+UPDATE "Profile" SET "bio"='I am Amy and I probably shouldn''t tell anyone I''m a super hero' WHERE "userId"=2;
 
 -- Delete profile with profileId = 3
+DELETE FROM "Profile" WHERE "profileId"=3;
 
 -- Select all rows from the "Profile" table
+SELECT * FROM "Profile";
 
 -- Select the row from the "Profile" table with userdId = 2
+SELECT * FROM "Profile" WHERE "userId"=2;
 
 -- Join the "User" and "Profile" tables to get all the details for ALL users (including the ones without a profile). Hint: Use an outer join.
+SELECT * FROM "User"
+LEFT JOIN "Profile"
+ON "User"."userId" = "Profile"."userId";
 
 -- Join the "User" and "Profile" tables to get the details of the users who have a profile.
-
+SELECT * FROM "User"
+INNER JOIN "Profile"
+ON "User"."userId" = "Profile"."userId";
 
