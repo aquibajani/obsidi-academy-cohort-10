@@ -51,3 +51,71 @@ INSERT INTO "students" ("courseId", "studentName", "studentEmail", "studentPhone
 (18, 'Henry Cooper', 'henry.cooper@yahoo.com', '6475559012'),
 (19,  'Jane Smith',   'jane@gmail.com', NULL),
 (5,   'Bob Wilson',  'bob@hotmail.com', NULL);
+
+
+-- Using dot notation, we tell PostgreSQL what we want to see output to the console: students.studentName and courses.courseName. We need the "" to tell PSQL what entities it's looking for, as explained in a previous lesson:
+SELECT "courses"."courseName", "students"."studentName", "students"."studentEmail"
+-- Here, we tell it the first table from which data will be taken:
+FROM "students"
+-- And then tell it to "join" that data with the other table from which the data should be taken:
+JOIN "courses"
+-- Finally, we tell it what values it should be matching up in order to create the lines we want to see:
+ON "students"."courseId" = "courses"."courseId";
+-- The above will make sure that the values in students.courseId are matched up to the same values in courses.courseId.
+
+
+-- Using dot notation, we tell PostgreSQL what we want to see output to the console: students.studentName and courses.courseName. We need the "" to tell PSQL what entities it's looking for, as explained in a previous lesson:
+SELECT "courses"."courseName", "students"."studentName", "students"."studentEmail"
+-- Here, we tell it the first table from which data will be taken:
+FROM "students"
+-- And then tell it to "join" that data with the other table from which the data should be taken:
+FULL JOIN "courses"
+-- Finally, we tell it what values it should be matching up in order to create the lines we want to see:
+ON "students"."courseId" = "courses"."courseId";
+-- The above will make sure that the values in students.courseId are matched up to the same values in courses.courseId.
+
+
+-- Using dot notation, we tell PostgreSQL what we want to see output to the console: students.studentName and courses.courseName. We need the "" to tell PSQL what entities it's looking for, as explained in a previous lesson:
+SELECT *
+-- Here, we tell it the first table from which data will be taken:
+FROM "courses"
+-- And then tell it to "join" that data with the other table from which the data should be taken:
+RIGHT JOIN "students"
+-- Finally, we tell it what values it should be matching up in order to create the lines we want to see:
+ON "courses"."courseId" = "students"."courseId";
+-- The above will make sure that the values in students.courseId are matched up to the same values in courses.courseId.
+
+
+-- Using dot notation, we tell PostgreSQL what we want to see output to the console: students.studentName and courses.courseName. We need the "" to tell PSQL what entities it's looking for, as explained in a previous lesson:
+SELECT *
+-- Here, we tell it the first table from which data will be taken:
+FROM "courses"
+-- And then tell it to "join" that data with the other table from which the data should be taken:
+LEFT JOIN "students"
+-- Finally, we tell it what values it should be matching up in order to create the lines we want to see:
+ON "courses"."courseId" = "students"."courseId";
+-- The above will make sure that the values in students.courseId are matched up to the same values in courses.courseId.
+
+
+SELECT 
+  "s"."studentId", 
+  "c"."courseId", 
+  "s"."studentName", 
+  "c"."courseName"
+FROM "students" 
+  AS "s" 
+INNER JOIN "courses" 
+  AS "c" 
+ON "s"."courseId" = "c"."courseId"
+
+SELECT DISTINCT "courseId" 
+FROM "students" 
+ORDER BY "courseId";
+
+-- Get a list of all the names of courses
+SELECT DISTINCT st."courseId", co."courseName" 
+FROM "students" AS st 
+INNER JOIN "courses" AS co 
+ON st."courseId" = co."courseId" ORDER BY st."courseId";
+
+SELECT DISTINCT COUNT("studentName") FROM students;
