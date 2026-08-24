@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Product from "./components/Product";
 import UserReview from "./components/UserReview";
 import "./index.css";
@@ -25,9 +25,65 @@ function App() {
     },
   ];
 
+  const userReviewData = [
+    {
+      reviewContent:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste ex illo incidunt nostrum unde et minima neque autem in placeat molestiae ratione tempora earum, itaque harum quas temporibus velit deserunt?",
+      reviewRating: 4.5,
+    },
+    {
+      reviewContent:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. A magni quis at dolorem voluptatem. Ipsum quis, deleniti ea voluptas in, quam perferendis, harum dolorum magnam saepe fugit natus praesentium culpa?",
+      reviewRating: 4,
+    },
+    {
+      reviewContent:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. A magni quis at dolorem voluptatem. Ipsum quis, deleniti ea voluptas in, quam perferendis, harum dolorum magnam saepe fugit natus praesentium culpa?",
+      reviewRating: 4,
+    },
+    {
+      reviewContent:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. A magni quis at dolorem voluptatem. Ipsum quis, deleniti ea voluptas in, quam perferendis, harum dolorum magnam saepe fugit natus praesentium culpa?",
+      reviewRating: 4,
+    },
+    {
+      reviewContent:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. A magni quis at dolorem voluptatem. Ipsum quis, deleniti ea voluptas in, quam perferendis, harum dolorum magnam saepe fugit natus praesentium culpa?",
+      reviewRating: 4,
+    },
+  ];
+
+  const [productCount, setProductCount] = useState<number>(0);
+  const [userReviewCount, setUserReviewCount] = useState<number>(0);
+
+  useEffect(() => {
+    setProductCount(productData.length);
+    setUserReviewCount(userReviewData.length);
+    console.log("UseEffect Running on render - only once");
+  }, []);
+
+  useEffect(() => {
+    setProductCount(productData.length);
+    console.log("UseEffect Running for productData");
+  }, [productData]);
+
+  useEffect(() => {
+    setUserReviewCount(userReviewData.length);
+    console.log("UseEffect Running for userReviewData");
+  }, [userReviewData]);
+
   return (
     <>
+      <section id="shoppingCart"></section>
       <section id="products">
+        <h1>Bestselling Products ({productCount})</h1>
+        {/* <button
+          onClick={() => {
+            setProductCount(productCount + 1);
+          }}
+        >
+          Add
+        </button> */}
         {productData.map((product) => (
           <Product
             productName={product.productName}
@@ -37,8 +93,9 @@ function App() {
         ))}
       </section>
       <section id="reviews">
+        <h1>User Reviews ({userReviewCount})</h1>
         <UserReview
-          reviewContent="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste ex illo incidunt nostrum unde et minima neque autem in placeat molestiae ratione tempora earum, itaque harum quas temporibus velit deserunt?"
+          reviewContent="Lorem ipsum dolor sit amet consectetur adipisicing elit. A magni quis at dolorem voluptatem. Ipsum quis, deleniti ea voluptas in, quam perferendis, harum dolorum magnam saepe fugit natus praesentium culpa?"
           reviewRating={4.5}
         />
         <UserReview
