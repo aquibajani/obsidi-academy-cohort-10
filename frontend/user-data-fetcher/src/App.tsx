@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "./store";
 import { fetchUserData, type User } from "./usersSlice";
 import "./App.css";
+import { Link } from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -25,7 +26,9 @@ function App() {
     );
   };
 
-  const favoriteUsers = data.filter((user) => favoriteUserIds.includes(user.id));
+  const favoriteUsers = data.filter((user) =>
+    favoriteUserIds.includes(user.id),
+  );
   const otherUsers = data.filter((user) => !favoriteUserIds.includes(user.id));
 
   const renderUserRows = (users: User[]) => {
@@ -68,6 +71,9 @@ function App() {
   return (
     <main className="app-shell">
       <header className="app-header">
+        <Link to="/profile">
+          <button>Visit Profile</button>
+        </Link>
         <p className="eyebrow">Directory / live endpoint</p>
         <h1>User directory</h1>
         <p className="intro">
@@ -75,7 +81,9 @@ function App() {
         </p>
       </header>
       {status === "loading" && <p className="state-message">Loading...</p>}
-      {status === "failed" && <p className="state-message error-message">{error}</p>}
+      {status === "failed" && (
+        <p className="state-message error-message">{error}</p>
+      )}
       {status === "succeeded" && (
         <section className="panels-grid" aria-live="polite">
           <article className="users-panel">
